@@ -52,7 +52,7 @@ class Post
     
     /**
      * @var string
-     *
+     * @Assert\File(mimeTypes={"image/png", "image/jpeg"})
      * @ORM\Column(name="image", type="string", length=255)
      */
     private $image;

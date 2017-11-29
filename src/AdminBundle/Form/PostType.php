@@ -5,7 +5,7 @@ namespace AdminBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 class PostType extends AbstractType
@@ -23,7 +23,15 @@ class PostType extends AbstractType
                     'format' => 'yyyy-MM-dd'
                 ))
                 ->add('image', FileType::class, array(
-                    'label' => 'image PNG, JPEG'
+                    'label' => 'image PNG, JPEG',
+                    'data_class' => null,
+                    'required' => false
+                ))
+                ->add('categories', EntityType::class, array(
+                    'class' => 'AdminBundle\Entity\Category',
+                    'choice_label' => 'title',
+                    'expanded' => false,
+                    'multiple' => true
                 ))
         ;
     }

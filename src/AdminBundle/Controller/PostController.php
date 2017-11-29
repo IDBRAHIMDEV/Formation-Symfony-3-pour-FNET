@@ -87,14 +87,28 @@ class PostController extends Controller
      */
     public function editAction(Request $request, Post $post)
     {
+        $oldPost = $post->getImage();
         $deleteForm = $this->createDeleteForm($post);
         $editForm = $this->createForm('AdminBundle\Form\PostType', $post);
         $editForm->handleRequest($request);
 
         if ($editForm->isSubmitted() && $editForm->isValid()) {
+             
+
+             if($post->getImage() == null) {
+                $post->setImage($oldPost);
+             }else{
+    
+                 $file = $post->getImage();
+                 $fileName = md5(uniqid()).'.'.$file->guessExtension();
+                 $file->move($this->getParameter('upload_posts_files'), $fileName);
+                 $post->setImage($fileName);
+             }
+
+
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('admin_post_edit', array('id' => $post->getId()));
+            return $this->redirectToRoute('admin_post_index');
         }
 
         return $this->render('post/edit.html.twig', array(
@@ -103,7 +117,6 @@ class PostController extends Controller
             'delete_form' => $deleteForm->createView(),
         ));
     }
-
     /**
      * Deletes a post entity.
      *
