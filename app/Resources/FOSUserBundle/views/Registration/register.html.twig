@@ -1,0 +1,20 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% block fos_user_content %}
+
+<div class="row marginTop" >
+   <div class="col-md-8 offset-md-2">
+   {% include "@FOSUser/Registration/register_content.html.twig" %}
+   </div>
+</div>
+
+{% endblock fos_user_content %}
+
+
+{% block stylesheets %}
+<style>
+    .marginTop {
+        margin: 30px 0px
+    }
+</style>
+{% endblock %}
