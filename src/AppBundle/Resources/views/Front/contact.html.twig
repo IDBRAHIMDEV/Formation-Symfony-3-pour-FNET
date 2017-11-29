@@ -1,0 +1,52 @@
+{% extends "::front.html.twig" %}
+
+{% block title %}AppBundle:Front:index{% endblock %}
+
+{% block body %}
+
+<div class="columns">
+   <div class="column">
+       
+   {{ form_start(form) }}
+       
+        <div class="field">
+              {{ form_label(form.subject, null, {'label_attr': {'class': 'label'}}) }}
+            <div class="control">
+               {{ form_widget(form.subject, {'attr': {'class': 'input'}}) }}
+            </div>
+        </div>
+
+
+        <div class="field">
+              {{ form_label(form.from, null, {'label_attr': {'class': 'label'}}) }}
+            <div class="control">
+               {{ form_widget(form.from, {'attr': {'class': 'input'}}) }}
+            </div>
+        </div>
+
+
+        <div class="field">
+              {{ form_label(form.body, null, {'label_attr': {'class': 'label'}}) }}
+            <div class="control">
+               {{ form_widget(form.body, {'attr': {'class': 'input'}}) }}
+            </div>
+        </div>
+
+
+       
+        <div class="field is-grouped">
+        <div class="control">
+            <button class="button is-link">Submit</button>
+        </div>
+        <div class="control">
+            <button class="button is-text">Cancel</button>
+        </div>
+        </div>
+
+        {{ form_end(form) }}
+   </div>
+</div>
+<h1>Contactez nous</h1>
+
+
+{% endblock %}
